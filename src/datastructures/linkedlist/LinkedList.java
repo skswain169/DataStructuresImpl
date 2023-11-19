@@ -65,6 +65,33 @@ public class LinkedList {
         tempNode.next_node=dataNode;
     }
 
+
+    public void reverseList()
+    {
+        if(head.next_node==null)
+        return;
+
+        else
+        {
+
+
+            Node curr=head,prev=head;
+            Node nextNode= head.next_node;
+
+            while (nextNode!=null) {
+
+                curr=nextNode;
+                nextNode=nextNode.next_node;
+                curr.next_node=prev;
+                prev=curr;
+                
+            }
+
+            head.next_node=null;
+            head=curr;
+        }
+    }
+
     public void printList() {
         Node node = head;
         while (node != null) {
