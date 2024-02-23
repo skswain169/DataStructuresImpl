@@ -33,8 +33,6 @@ public class LinkedList {
             tempNode = null;
         }
 
-    
-
     }
 
     public void insertAtFirst(int data) {
@@ -45,51 +43,68 @@ public class LinkedList {
 
     }
 
+    public void insertAtPosition(int pos, int data) {
 
-    public void insertAtPosition(int pos, int data)
-    {
+        Node dataNode = new Node(data);
+        Node tempNode = head;
+        Node iterateNode = head;
 
-        Node dataNode= new Node(data);
-        Node tempNode= head;
-        Node iterateNode= head;
+        int i = 0;
 
-        int i=0;
+        while (i < pos - 1) {
 
-        while (i< pos-1) {
-            
-            tempNode= iterateNode;
-            iterateNode= iterateNode.next_node;
+            tempNode = iterateNode;
+            iterateNode = iterateNode.next_node;
             i++;
         }
-        dataNode.next_node=tempNode.next_node;
-        tempNode.next_node=dataNode;
+        dataNode.next_node = tempNode.next_node;
+        tempNode.next_node = dataNode;
     }
 
+    public void reverseList() {
+        /*
+         * if (head.next_node == null)
+         * return;
+         * 
+         * else {
+         * 
+         * Node curr = head, prev = null;
+         * Node nextNode = null;
+         * 
+         * while (curr != null) {
+         * nextNode = curr.next_node;
+         * curr.next_node = prev;
+         * prev = curr;
+         * curr = nextNode;
+         * 
+         * }
+         * 
+         * head = prev;
+         * prev=null;
+         * }
+         */
 
-    public void reverseList()
-    {
-        if(head.next_node==null)
-        return;
+        Node curr = head, prev = null;
+        reverseByrecursion(curr, prev);
 
-        else
-        {
+    }
 
+    public void reverseByrecursion(Node curr, Node prev) {
 
-            Node curr=head,prev=head;
-            Node nextNode= head.next_node;
+        if (curr == null) {
 
-            while (nextNode!=null) {
-
-                curr=nextNode;
-                nextNode=nextNode.next_node;
-                curr.next_node=prev;
-                prev=curr;
-                
-            }
-
-            head.next_node=null;
-            head=curr;
+            head = prev;
+            return;
         }
+
+        else {
+
+            Node next = curr.next_node;
+            curr.next_node = prev;
+
+            reverseByrecursion(next, curr);
+        }
+
     }
 
     public void printList() {
